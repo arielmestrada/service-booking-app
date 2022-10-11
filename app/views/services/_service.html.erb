@@ -1,13 +1,14 @@
-<div>
-    <h2>
-        <%= service.name %>
-    </h2>
+<div class="service">
+    <div class="service-info">
+        <h2><%= service.name %></h2>
+        <p><%= service.description %></p>
+        <p><%= service.price %></p>
+    </div>
 
-    <p>
-        <%= service.description %>
-    </p>
+    <div class="addons">
+    </div>
 
-    <p>
-        <%= service.price %>
-    </p>
+    <div class="schedule">
+        <%= render service.schedules %>
+    </div>
 </div>
