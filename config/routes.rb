@@ -1,10 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :users
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Defines the root path route ("/")
-  # root "articles#index"
   root "pages#home"
+  devise_for :users
 
   resources :categories, except: [:show] do
     resources :services, except: [:show] do
@@ -14,5 +11,17 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  resources :users, only: [:index] do
+    resources :payment_options, only: [:new, :create, :destroy]
+  end
+
+  resources :bookings, except: [:new, :edit]
+
+  # admin overview(dashboard)
+  get "/overview", to: "pages#overview", as: "overview"
+
+  # all services
+  get "/services", to: "services#all", as: "services"
   
 end

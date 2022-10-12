@@ -1,10 +1,9 @@
 <h3>
-    <%= date_formatter(schedule) %>
+    <%= addon.name %>
+    <%= addon.description %>
+    <%= addon.price %>
 
-    <%= link_to "Edit Schedule", edit_category_service_schedule_path(@category, schedule.service, schedule), data: { turbo_frame: 'modal' } %>
-    <%= button_to "Delete Schedule", category_service_schedule_path(@category, schedule.service, schedule),
-    method: :delete, form: { data: { turbo_confirm: "Delete schedule on #{date_formatter(schedule)}?" } } %>
-
-    <%= link_to "Add Timeslot", new_category_service_schedule_timeslot_path(@category, schedule.service, schedule), data: { turbo_frame: 'modal' } %>
-    <%= render schedule.timeslots %>
+    <%= link_to "Edit Addon", edit_category_service_addon_path(addon.service.category, addon.service, addon), data: { turbo_frame: 'modal' } %>
+    <%= button_to "Delete Addon", category_service_addon_path(addon.service.category, addon.service, addon),
+    method: :delete, form: { data: { turbo_confirm: "Delete addon #{addon.name}?" } } %>
 </h3>

@@ -2,7 +2,7 @@
     
     <div>
         <%= f.label :available_time %>
-        <%= f.time_field :available_time, min: Time.now.strftime("%H:%M"), value: Time.now.strftime("%H:%M") %>
+        <%= f.time_field :available_time, value: Time.now.strftime("%H:%M") %>
     </div>
 
     <div>

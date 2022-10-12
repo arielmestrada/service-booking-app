@@ -1,10 +1,10 @@
 <h3>
     <%= date_formatter(schedule) %>
 
-    <%= link_to "Edit Schedule", edit_category_service_schedule_path(@category, schedule.service, schedule), data: { turbo_frame: 'modal' } %>
-    <%= button_to "Delete Schedule", category_service_schedule_path(@category, schedule.service, schedule),
+    <%= link_to "Edit Schedule", edit_category_service_schedule_path(schedule.service.category, schedule.service, schedule), data: { turbo_frame: 'modal' } %>
+    <%= button_to "Delete Schedule", category_service_schedule_path(schedule.service.category, schedule.service, schedule),
     method: :delete, form: { data: { turbo_confirm: "Delete schedule on #{date_formatter(schedule)}?" } } %>
 
-    <%= link_to "Add Timeslot", new_category_service_schedule_timeslot_path(@category, schedule.service, schedule), data: { turbo_frame: 'modal' } %>
+    <%= link_to "Add Timeslot", new_category_service_schedule_timeslot_path(schedule.service.category, schedule.service, schedule), data: { turbo_frame: 'modal' } %>
     <%= render schedule.timeslots %>
 </h3>

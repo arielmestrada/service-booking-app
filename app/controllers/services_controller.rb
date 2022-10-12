@@ -1,8 +1,12 @@
 class ServicesController < ApplicationController
   before_action :authenticate_user!
-  before_action :get_category
+  before_action :get_category, except: [:all]
   before_action :get_service, only: [:edit, :update, :destroy]
   before_action :ensure_frame_response, only: [:new, :edit]
+
+  def all
+    @services = Service.all
+  end
 
   def index
     @services = @category.services
