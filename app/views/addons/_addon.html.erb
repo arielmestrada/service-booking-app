@@ -1,0 +1,9 @@
+<h3>
+    <%= addon.name %>
+    <%= addon.description %>
+    <%= addon.price %>
+
+    <%= link_to "Edit Addon", edit_category_service_addon_path(addon.service.category, addon.service, addon), data: { turbo_frame: 'modal' } %>
+    <%= button_to "Delete Addon", category_service_addon_path(addon.service.category, addon.service, addon),
+    method: :delete, form: { data: { turbo_confirm: "Delete addon #{addon.name}?" } } %>
+</h3>

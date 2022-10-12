@@ -1,0 +1,3 @@
+<h1>Services for <%= @category.name %></h1>
+<%= link_to "Create Service", new_category_service_path(@category), data: { turbo_frame: 'modal' } %>
+<%= render @services %>

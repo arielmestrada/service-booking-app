@@ -1,0 +1,17 @@
+<%= form_with(model: [@category, @service, @schedule, timeslot]) do |f| %>
+    
+    <div>
+        <%= f.label :available_time %>
+        <%= f.time_field :available_time, value: Time.now.strftime("%H:%M") %>
+    </div>
+
+    <div>
+        <%= f.label :slots %>
+        <%= f.number_field :slots, min: 1 %>
+    </div>
+
+    <div>
+        <%= f.submit %>
+    </div>
+    
+<% end %>

@@ -1,0 +1,21 @@
+<div class="service">
+    <div class="service-info">
+        <h2><%= service.name %></h2>
+        <%= "Category: #{service.category.name}" if current_page?(services_path) %>
+        <p><%= service.description %></p>
+        <p><%= service.price %></p>
+    </div>
+
+    <div class="addons">
+        <%= link_to "Add Addon", new_category_service_addon_path(service.category, service), data: { turbo_frame: 'modal' } %>
+        <%= render service.addons %>
+    </div>
+
+    <div class="schedule">
+        <%= link_to "Add Schedule", new_category_service_schedule_path(service.category, service), data: { turbo_frame: 'modal' } %>
+        <%= render service.schedules %>
+    </div>
+
+    <%= link_to "Edit Service", edit_category_service_path(service.category, service), data: { turbo_frame: 'modal' } %>
+    <%= button_to "Delete Service", category_service_path(service.category, service), method: :delete, form: { data: { turbo_confirm: "Delete #{service.name}?" } } %>
+</div>

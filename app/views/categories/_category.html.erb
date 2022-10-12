@@ -1,0 +1,8 @@
+<div>
+    <h2><%= category.name %></h2>
+    <p><%= category.description %></p>
+
+    <%= link_to "Services", category_services_path(category) %>
+    <%= link_to "Edit Category", edit_category_path(category), data: { turbo_frame: 'modal' } %>
+    <%= button_to "Delete Category", category, method: :delete, form: { data: { turbo_confirm: "Delete #{category.name}?" } } %>
+</div>

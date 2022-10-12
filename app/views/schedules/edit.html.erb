@@ -1,0 +1,7 @@
+<%= turbo_frame_tag "modal" do %>    
+    <div data-controller="turbo-modal">
+        <h1>Edit Schedule</h1>
+        <%= render "form", schedule: @schedule %>
+        <button data-action="turbo-modal#hideModal">Cancel</button>
+    </div>
+<% end %>

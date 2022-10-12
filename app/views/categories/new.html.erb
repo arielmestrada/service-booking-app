@@ -1,0 +1,7 @@
+<%= turbo_frame_tag "modal" do %>    
+    <div data-controller="turbo-modal">
+        <h1>New Category</h1>
+        <%= render "form", category: @category %>
+        <button data-action="turbo-modal#hideModal">Cancel</button>
+    </div>
+<% end %>
