@@ -7,10 +7,6 @@ class ServicesController < ApplicationController
   def index
     @services = @category.services
   end
-    
-  def show        
-    redirect_to category_services_path(@category)
-  end
   
   def new
     @service = @category.services.new

@@ -6,6 +6,7 @@
     </div>
 
     <div class="schedule">
+        <%= link_to "Add Schedule", new_category_service_schedule_path(@category, service), data: { turbo_frame: 'modal' } %>
         <%= render service.schedules %>
     </div>
 

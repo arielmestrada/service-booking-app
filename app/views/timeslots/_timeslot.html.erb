@@ -1,3 +1,7 @@
 <h4>
     <%= time_formatter(timeslot) %>
+
+    <%= link_to "Edit Timeslot", edit_category_service_schedule_timeslot_path(timeslot.service.category, timeslot.service, timeslot.schedule, timeslot), data: { turbo_frame: 'modal' } %>
+    <%= button_to "Delete Timeslot", category_service_schedule_timeslot_path(timeslot.service.category, timeslot.service, timeslot.schedule, timeslot),
+    method: :delete, form: { data: { turbo_confirm: "Delete timeslot on #{time_formatter(timeslot)}?" } } %>
 </h4>

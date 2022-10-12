@@ -6,10 +6,6 @@ class CategoriesController < ApplicationController
         @categories = Category.all
     end
 
-    def show        
-        redirect_to categories_path
-    end
-
     def new
         @category = Category.new
     end

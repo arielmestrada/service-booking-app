@@ -1,37 +1,37 @@
-class SchedulesController < ApplicationController
+class AddonsController < ApplicationController
     before_action :authenticate_user!
     before_action :get_service, :get_category
     before_action :ensure_frame_response, only: [:new, :edit]
-      
+        
     def new
-        @schedule = @service.schedules.new
+        @addon = @service.addons.new
     end
     
     def edit
-        @schedule = Schedule.find(params[:id])
+        @addon = Addon.find(params[:id])
     end
-  
+    
     def create
-        @schedule = @service.schedules.create(schedule_params)
+        @addon = @service.addons.create(addon_params)
         redirect_to category_services_path(params[:category_id])
     end
-  
+    
     def update
-        @schedule = @service.schedules.update(schedule_params)
+        @addon = @service.addons.update(addon_params)
         redirect_to category_services_path(params[:category_id])
     end
-  
+    
     def destroy
-        @schedule = Schedule.find(params[:id]).destroy
+        @addon = Addon.find(params[:id]).destroy
         redirect_to category_services_path(params[:category_id])
     end
-  
+    
     private
-  
-    def schedule_params
-        params.require(:schedule).permit(:available_date)
+    
+    def addon_params
+        params.require(:addon).permit(:name, :description, :price)
     end    
-  
+    
     def get_service
         @service = Service.find(params[:service_id])
     end
@@ -39,7 +39,7 @@ class SchedulesController < ApplicationController
     def get_category
         @category = @service.category
     end
-  
+    
     def ensure_frame_response
         redirect_to category_services_path(@category) unless turbo_frame_request?
     end
