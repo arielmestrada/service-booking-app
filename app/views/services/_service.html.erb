@@ -5,10 +5,10 @@
         <p><%= service.price %></p>
     </div>
 
-    <div class="addons">
-    </div>
-
     <div class="schedule">
         <%= render service.schedules %>
     </div>
+
+    <%= link_to "Edit Service", edit_category_service_path(@category, service), data: { turbo_frame: 'modal' } %>
+    <%= button_to "Delete Service", category_service_path(@category, service), method: :delete, form: { data: { turbo_confirm: "Delete #{service.name}?" } } %>
 </div>

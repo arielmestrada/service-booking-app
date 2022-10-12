@@ -1,4 +1,3 @@
 <h1>Categories</h1>
-
-<%= render "categories/new_category_form" %>
+<%= link_to "Create Category", new_category_path, data: { turbo_frame: 'modal' } %>
 <%= render @categories %>

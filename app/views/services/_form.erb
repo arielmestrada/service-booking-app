@@ -1,4 +1,4 @@
-<%= form_with(model: @category) do |f| %>
+<%= form_with(model: [@category, service]) do |f| %>
     
     <div>
         <%= f.label :name %>
@@ -11,7 +11,12 @@
     </div>
 
     <div>
-        <%= f.submit "Create Category" %>
+        <%= f.label :price %>
+        <%= f.number_field  :price, step: :any %>
+    </div>
+
+    <div>
+        <%= f.submit %>
     </div>
     
 <% end %>

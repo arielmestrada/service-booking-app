@@ -1,5 +1,5 @@
-<%= form_with(model: [@category, @service]) do |f| %>
-    
+<%= form_with(model: category) do |f| %>
+        
     <div>
         <%= f.label :name %>
         <%= f.text_field :name %>
@@ -11,12 +11,7 @@
     </div>
 
     <div>
-        <%= f.label :price %>
-        <%= f.number_field  :price, step: :any %>
-    </div>
-
-    <div>
-        <%= f.submit "Create Service" %>
+        <%= f.submit %>
     </div>
     
 <% end %>
