@@ -1,20 +1,38 @@
-<div>
-    <%= booking.booking_number %><br/>
-    <%= booking.date_booked %><br/>
-    <%= booking.email %><br/>
-    <%= booking.first_name %><br/>
-    <%= booking.last_name %><br/>
-    <%= booking.contact_number %><br/>
-    <%= booking.street %><br/>
-    <%= booking.village %><br/>
-    <%= booking.city %><br/>
-    <%= booking.province %><br/>
-    <%= booking.postal_code %><br/>
-    <%= booking.service_name %><br/>
-    <%= booking.service_price %><br/>
-    <%= booking.scheduled_date %><br/>
-    <%= booking.scheduled_time %><br/>
-    <%= booking.amount %><br/>
-    <%= booking.payment %><br/>
-    <%= booking.status %>
-</div>
+<% if current_page?(overview_path) %>
+    <tr>
+        <td><%= booking.booking_number %></td>
+        <td><%= booking.service_name %></td>
+
+        <% if booking.addon_names.any? %>        
+            <td><%= booking.addon_names.to_sentence %></td>  
+        <%else%>    
+            <td>None</td>
+        <%end%>             
+        <td><%= "#{booking.first_name} #{booking.last_name}" %></td>
+        <td><%= booking.email %></td>
+        <td><%= booking.contact_number %></td>
+        <td><%= booking.status %></td>
+    </tr>
+<% else %>
+    <div>
+        <%= booking.booking_number %><br/>
+        <%= booking.date_booked %><br/>
+        <%= booking.email %><br/>
+        <%= booking.first_name %><br/>
+        <%= booking.last_name %><br/>
+        <%= booking.contact_number %><br/>
+        <%= booking.street %><br/>
+        <%= booking.village %><br/>
+        <%= booking.city %><br/>
+        <%= booking.province %><br/>
+        <%= booking.postal_code %><br/>
+        <%= booking.service_name %><br/>
+        <%= booking.service_price %><br/>
+        <%= booking.scheduled_date %><br/>
+        <%= booking.scheduled_time %><br/>
+        <%= booking.amount %><br/>
+        <%= booking.payment %><br/>
+        <%= booking.status %>
+    </div>
+<% end %>
+

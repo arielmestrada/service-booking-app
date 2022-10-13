@@ -16,6 +16,19 @@
 
  @import "bootstrap";
 
+//  .overview-rows {
+//    min-height: 40vh;
+//    overflow: scroll;
+//  }
+
+ .t-shadow-sml {
+    text-shadow: 2px 2px 1px hsl(0, 0%, 80%);
+ }
+
+ .t-shadow-sml-light {
+    text-shadow: 1.5px 1.5px 2px hsl(0, 0%, 80%);
+ }
+
  #modal {
     position: absolute;
     z-index: 999;

@@ -10,13 +10,12 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-
+  <body class="container-lg">
     <%= render "layouts/navbar" unless current_page?(root_path) || !user_signed_in? %>
 
-    <%= turbo_frame_tag "modal" %>
-    
     <%= yield %>
+
+    <%= turbo_frame_tag "modal" %>    
 
     <dialog id="turbo-confirm">
       <form method="dialog">

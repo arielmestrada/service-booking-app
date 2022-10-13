@@ -1,1 +1,43 @@
 <h1>Admin Overview</h1>
+<div class="container">
+    <div class="row overview-rows">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">First</th>
+                    <th scope="col">Last</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Contact</th>
+                    <th scope="col">Street</th>
+                    <th scope="col">Village</th>
+                    <th scope="col">City</th>
+                    <th scope="col">Province</th>
+                    <th scope="col">Postal</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%= render @users %>    
+            </tbody>
+        </table>
+    </div>
+
+    <div class="row overview-rows">
+        <h3><%= "Your most booked service is #{@most_booked_service}" %></h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Booking Number</th>
+                    <th scope="col">Service</th>
+                    <th scope="col">Addons</th>
+                    <th scope="col">Customer Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Contact</th>
+                    <th scope="col">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%= render @bookings %>    
+            </tbody>
+        </table>
+    </div>    
+</div>
