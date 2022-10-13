@@ -1,0 +1,77 @@
+<%= form_with(url: "/booking/confirmation", method: :get, data: { turbo_frame: 'modal' }) do |f| %>
+ 
+    <div class="field">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, value: current_user.email %>
+    </div>
+ 
+    <div class="field">
+        <%= f.label :first_name %><br />
+        <%= f.text_field :first_name, value: current_user.first_name %>
+    </div>
+    
+    <div class="field">
+        <%= f.label :last_name %><br />
+        <%= f.text_field :last_name, value: current_user.last_name %>
+    </div>
+
+    <div class="field">
+        <%= f.label :contact_number %><br />
+        <%= f.number_field :contact_number, value: current_user.contact_number %>
+    </div>
+    
+    <div class="field">
+        <%= f.label :street %><br />
+        <%= f.text_field :street, value: current_user.street %>
+    </div>
+
+    <div class="field">
+        <%= f.label :village %><br />
+        <%= f.text_field :village, value: current_user.village %>
+    </div>
+    
+    <div class="field">
+        <%= f.label :city %><br />
+        <%= f.text_field :city, value: current_user.city %>
+    </div>
+
+    <div class="field">
+        <%= f.label :province %><br />
+        <%= f.text_field :province, value: current_user.province %>
+    </div>
+    
+    <div class="field">
+        <%= f.label :postal_code %><br />
+        <%= f.number_field :postal_code, value: current_user.postal_code %>
+    </div>
+
+    <div class="field">
+        <%= @service.name %><br />
+        <%= f.hidden_field :service_name, value: @service.name %>
+    </div>
+
+    <div class="field">
+        <%= @service.price %><br />
+        <%= f.hidden_field :service_price, value: @service.price %>
+    </div>
+
+    <div class="field">
+        <%= Schedule.find(params[:schedule_id]).available_date %><br />
+        <%= f.hidden_field :scheduled_date, value: Schedule.find(params[:schedule_id]).available_date %>
+    </div>
+
+    <div class="field">
+        <%= f.label "Time" %><br />
+        <%= f.collection_select :scheduled_time, Schedule.find(params[:schedule_id]).timeslots, :time_string, :time_string %>
+    </div>
+
+    <div class="field">
+        <%= f.label "Payment Option" %><br />
+        <%= f.collection_select :payment, current_user.payment_options, :id, :card_number, :include_blank => "Pay at the store" %>
+    </div>
+ 
+    <div>
+        <%= f.submit %>
+    </div>
+    
+<% end %>

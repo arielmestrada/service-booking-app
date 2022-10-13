@@ -1,0 +1,43 @@
+<%= turbo_frame_tag "modal" do %>    
+    <div data-controller="turbo-modal">
+        <h1>Confirm Booking</h1>
+        <%= form_with(url: "/booking/confirmation", method: :post) do |f| %>
+
+            <%= f.hidden_field :email, value: params[:email]%>
+            <%= f.hidden_field :first_name, value: params[:first_name]%>
+            <%= f.hidden_field :last_name, value: params[:last_name]%>
+            <%= f.hidden_field :contact_number, value: params[:contact_number]%>
+            <%= f.hidden_field :street, value: params[:street]%>
+            <%= f.hidden_field :village, value: params[:village]%>
+            <%= f.hidden_field :city, value: params[:city]%>
+            <%= f.hidden_field :province, value: params[:province]%>
+            <%= f.hidden_field :postal_code, value: params[:postal_code]%>
+            <%= f.hidden_field :service_name, value: params[:service_name]%>
+            <%= f.hidden_field :service_price, value: params[:service_price]%>
+            <%= f.hidden_field :scheduled_date, value: params[:scheduled_date]%>
+            <%= f.hidden_field :scheduled_time, value: params[:scheduled_time]%>
+            <%= f.hidden_field :payment, value: params[:payment]%>
+
+            <%= f.label params[:email]%>
+            <%= f.label params[:first_name]%>
+            <%= f.label params[:last_name]%>
+            <%= f.label params[:contact_number]%>
+            <%= f.label params[:street]%>
+            <%= f.label params[:village]%>
+            <%= f.label params[:city]%>
+            <%= f.label params[:province]%>
+            <%= f.label params[:postal_code]%>
+            <%= f.label params[:service_name]%>
+            <%= f.label params[:service_price]%>
+            <%= f.label params[:scheduled_date]%>
+            <%= f.label params[:scheduled_time]%>
+            <%= f.label params[:payment]%>
+        
+            <div>
+                <%= f.submit %>
+            </div>
+            
+        <% end %>
+        <button data-action="turbo-modal#hideModal">Cancel</button>
+    </div>
+<% end %>

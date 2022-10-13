@@ -1,0 +1,27 @@
+<%= form_with(model: [@user, payment_option]) do |f| %>
+    
+    <div>
+        <%= f.label :card_type %><br>
+        <%= f.select :card_type, [ 'VISA','MasterCard','PayPal' ], :prompt => 'Select One' %>
+    </div>
+
+    <div>
+        <%= f.label :card_number %>
+        <%= f.number_field :card_number %>
+    </div>
+
+    <div>
+        <%= f.label :expiry_date %>
+        <%= f.date_field  :expiry_date %>
+    </div>
+
+    <div>
+        <%= f.label :registered_name %>
+        <%= f.text_field  :registered_name %>
+    </div>
+
+    <div>
+        <%= f.submit %>
+    </div>
+    
+<% end %>

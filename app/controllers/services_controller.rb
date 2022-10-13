@@ -5,7 +5,22 @@ class ServicesController < ApplicationController
   before_action :ensure_frame_response, only: [:new, :edit]
 
   def all
-    @services = Service.all
+    if can? :manage, Service
+      @services = Service.all
+    else
+
+      # Refactor this after completion
+      @service_ids = []
+      Service.all.each do |service|
+        if service.timeslots.any?
+          @service_ids << service.id
+        end
+      end
+      @service_ids.compact.uniq
+      
+
+      @services = Service.where(id: @service_ids)
+    end
   end
 
   def index

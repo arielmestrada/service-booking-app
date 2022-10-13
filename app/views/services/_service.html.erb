@@ -6,16 +6,26 @@
         <p><%= service.price %></p>
     </div>
 
-    <div class="addons">
-        <%= link_to "Add Addon", new_category_service_addon_path(service.category, service), data: { turbo_frame: 'modal' } %>
-        <%= render service.addons %>
-    </div>
+    <% if can? :manage, Service %>
+        <div class="addons">
+            <%= link_to "Add Addon", new_category_service_addon_path(service.category, service), data: { turbo_frame: 'modal' } %>
+            <%= render service.addons %>
+        </div>
 
-    <div class="schedule">
-        <%= link_to "Add Schedule", new_category_service_schedule_path(service.category, service), data: { turbo_frame: 'modal' } %>
-        <%= render service.schedules %>
-    </div>
+        <div class="schedule">
+            <%= link_to "Add Schedule", new_category_service_schedule_path(service.category, service), data: { turbo_frame: 'modal' } %>
+            <%= render service.schedules %>
+        </div>
 
-    <%= link_to "Edit Service", edit_category_service_path(service.category, service), data: { turbo_frame: 'modal' } %>
-    <%= button_to "Delete Service", category_service_path(service.category, service), method: :delete, form: { data: { turbo_confirm: "Delete #{service.name}?" } } %>
+        <%= link_to "Edit Service", edit_category_service_path(service.category, service), data: { turbo_frame: 'modal' } %>
+        <%= button_to "Delete Service", category_service_path(service.category, service), method: :delete, form: { data: { turbo_confirm: "Delete #{service.name}?" } } %>
+    <% else %>
+        <%= form_with url: "/categories/#{service.category.id}/services/#{service.id}/bookings/new", method: :get, data: { turbo_frame: 'modal' } do |form| %>
+            <div class="field">
+                <%= form.label :schedule_id %><br />
+                <%= form.collection_select :schedule_id, service.schedules, :id, :available_date %>
+            </div>
+            <%= form.submit "Add to Cart" %>
+        <% end %>
+    <% end %>    
 </div>

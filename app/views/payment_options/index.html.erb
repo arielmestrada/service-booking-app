@@ -1,0 +1,3 @@
+<h1>Payment Options</h1>
+<%= link_to "Add payment option", new_user_payment_option_path(@user), data: { turbo_frame: 'modal' } %>
+<%= render @payment_options %>

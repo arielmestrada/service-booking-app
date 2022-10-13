@@ -12,7 +12,9 @@ class TimeslotsController < ApplicationController
     end
     
     def create
-        @timeslot = @schedule.timeslots.create(timeslot_params)
+        @new = @schedule.timeslots.new(timeslot_params)
+        @new.time_string = @new.available_time.strftime("%I:%M%p")
+        @new.save
         redirect_to category_services_path(params[:category_id])
     end
     
