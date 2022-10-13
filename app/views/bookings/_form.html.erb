@@ -46,14 +46,24 @@
     </div>
 
     <div class="field">
-        <%= @service.name %><br />
+        <%= f.label @service.name %><br />
         <%= f.hidden_field :service_name, value: @service.name %>
     </div>
 
     <div class="field">
-        <%= @service.price %><br />
+        <%= f.label @service.price %><br />
         <%= f.hidden_field :service_price, value: @service.price %>
     </div>
+
+    <% if @service.addons.any? %>
+        <div class="field">
+            <% @service.addons.each do |addon| %>
+                <%= f.check_box :addons, { multiple: true }, addon.id, nil %>
+                <%= f.label "#{addon.name} +#{addon.price}php" %>
+            <% end %>
+        </div>
+        
+    <% end %>
 
     <div class="field">
         <%= Schedule.find(params[:schedule_id]).available_date %><br />

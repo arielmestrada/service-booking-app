@@ -17,7 +17,8 @@
             <%= f.hidden_field :scheduled_date, value: params[:scheduled_date]%>
             <%= f.hidden_field :scheduled_time, value: params[:scheduled_time]%>
             <%= f.hidden_field :payment, value: params[:payment]%>
-
+            <%= f.hidden_field :addons, value: params[:addons]%>            
+            
             <%= f.label params[:email]%>
             <%= f.label params[:first_name]%>
             <%= f.label params[:last_name]%>
@@ -32,6 +33,15 @@
             <%= f.label params[:scheduled_date]%>
             <%= f.label params[:scheduled_time]%>
             <%= f.label params[:payment]%>
+
+            <% if params[:addons].to_a.any? %>
+                <% Addon.where(id: params[:addons]).each do |addon| %>
+                    <div>
+                        <%= f.label addon.name%>
+                        <%= f.label addon.price%>
+                    </div>
+                <% end %>
+            <% end %>
         
             <div>
                 <%= f.submit %>
