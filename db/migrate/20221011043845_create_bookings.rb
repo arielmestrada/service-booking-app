@@ -3,8 +3,15 @@ class CreateBookings < ActiveRecord::Migration[7.0]
     create_table :bookings do |t|
       t.bigint :booking_number
       t.datetime :date_booked
-      t.string :customer_name
-      t.string :customer_address
+      t.string :email
+      t.string :first_name
+      t.string :last_name
+      t.bigint :contact_number
+      t.string :street
+      t.string :village
+      t.string :city
+      t.string :province
+      t.bigint :postal_code
       t.string :service_name
       t.float :service_price
       t.date :scheduled_date

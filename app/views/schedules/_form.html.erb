@@ -1,12 +1,12 @@
 <%= form_with(model: [@category, @service, schedule]) do |f| %>
     
-    <div>
-        <%= f.label :available_date %>
-        <%= f.date_field :available_date, min: Date.today, value: Date.today %>
+    <div class="mb-3">
+        <%= f.label :available_date, class:"form-label" %>
+        <%= f.date_field :available_date, min: Date.today, value: Date.today, class:"form-control" %>
     </div>
 
-    <div>
-        <%= f.submit %>
+    <div class="mb-3">
+        <%= f.submit class:"btn btn-primary" %>
     </div>
     
 <% end %>

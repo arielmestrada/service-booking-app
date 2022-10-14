@@ -1,7 +1,3 @@
-<%= turbo_frame_tag "modal" do %>    
-    <div data-controller="turbo-modal">
-        <h1>New Addon</h1>
-        <%= render "form", addon: @addon %>
-        <button data-action="turbo-modal#hideModal">Cancel</button>
-    </div>
+<%= render "shared/modal", title: "New Addon" do %>
+    <%= render "form", addon: @addon %>
 <% end %>

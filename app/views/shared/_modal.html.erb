@@ -1,0 +1,12 @@
+<%= turbo_frame_tag "modal" do %>
+    <%= tag.div data: { controller: "turbo-modal",
+                        turbo_modal_target: "modal",
+                        action: "turbo:submit-end->turbo-modal#submitEnd keyup@window->turbo-modal#closeWithKeyboard click@window->turbo-modal#closeBackground" },
+                        class: "custom-modal shadow p-3 mb-5 bg-white rounded" do %>
+      <h1 class="modal-title fs-5 mb-3"><%= title %></h1>
+      <%= yield %>
+      <div clas="mb-3">
+        <%= button_tag "Close", data: { action: "turbo-modal#hideModal" }, type: "button", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+<% end %>

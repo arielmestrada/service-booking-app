@@ -18,10 +18,15 @@ gem "bootsnap", require: false
 gem "pg"
 gem "devise"
 gem "bootstrap"
+gem "cancancan"
+gem "view_component"
+gem "font-awesome-sass"
+gem "image_processing"
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
   gem "rspec-rails"
+  gem "pry"
 end
 
 group :development do

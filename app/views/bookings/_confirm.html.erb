@@ -1,0 +1,60 @@
+<%= form_with(url: "/booking/confirmation", method: :post) do |f| %>
+
+    <%= f.hidden_field :email, value: params[:email]%>
+    <%= f.hidden_field :first_name, value: params[:first_name]%>
+    <%= f.hidden_field :last_name, value: params[:last_name]%>
+    <%= f.hidden_field :contact_number, value: params[:contact_number]%>
+    <%= f.hidden_field :street, value: params[:street]%>
+    <%= f.hidden_field :village, value: params[:village]%>
+    <%= f.hidden_field :city, value: params[:city]%>
+    <%= f.hidden_field :province, value: params[:province]%>
+    <%= f.hidden_field :postal_code, value: params[:postal_code]%>
+    <%= f.hidden_field :service_name, value: params[:service_name]%>
+    <%= f.hidden_field :service_price, value: params[:service_price]%>
+    <%= f.hidden_field :scheduled_date, value: params[:scheduled_date]%>
+    <%= f.hidden_field :scheduled_time, value: params[:scheduled_time]%>
+    <%= f.hidden_field :payment, value: params[:payment]%>
+    <%= f.hidden_field :addons, value: params[:addons]%>  
+
+    <h6>Name:</h6>
+    <p><%= "#{params[:first_name]} #{params[:last_name]}" %></p>    
+    <h6>Email:</h6>
+    <p><%= params[:email] %></p>
+    <h6>Contact:</h6>
+    <p><%= params[:contact_number] %></p>
+    <h6>Address:</h6>
+    <p><%= "#{params[:street]}, #{params[:village]}, #{params[:city]}, #{params[:province]}, #{params[:postal_code]}" %></p>
+    <h6>Service:</h6>
+    <p><%= params[:service_name] %></p>
+    <h6>Price:</h6>
+    <p><%= params[:service_price] %></p>
+    
+    <% if params[:addons].to_a.any? %>
+        <% Addon.where(id: params[:addons]).each do |addon| %>
+            <p><%= "#{addon.name} +#{addon.price}php" %></p>
+        <% end %>
+    <% end %>
+    
+    <h6>Scheduled Date:</h6>
+    <p><%= params[:scheduled_date].to_date.strftime("%A, %B %d %Y") %></p>
+    <h6>Scheduled Time:</h6>
+    <p><%= params[:scheduled_time].to_time.strftime("%I:%M%p") %></p> 
+    <h6>Total Amount:</h6>
+    <% @total_price = params[:service_price].to_f %>
+    <% Addon.where(id: params[:addons]).each do |addon| %>  
+        <% @total_price += addon.price.to_f %>
+    <% end %>   
+    <p><%= "#{@total_price}php" %></p>
+    
+    <h6>Payment:</h6>
+    <% if params[:payment].blank? %>
+        <p>Pay at store</p>
+    <% else %>        
+        <p><%= "#{current_user.payment_options.find(params[:payment]).card_type} - #{current_user.payment_options.find(params[:payment]).card_number}" %></p>
+    <% end %>    
+
+    <div class="mb-3">
+        <%= f.submit "Confirm", class:"btn btn-primary" %>
+    </div>
+    
+<% end %>

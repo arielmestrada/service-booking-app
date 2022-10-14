@@ -5,7 +5,22 @@ class ServicesController < ApplicationController
   before_action :ensure_frame_response, only: [:new, :edit]
 
   def all
-    @services = Service.all
+    if can? :manage, Service
+      @services = Service.all.order(created_at: :asc)
+    else
+
+      # Refactor this after completion
+      @service_ids = []
+      Service.all.each do |service|
+        if service.timeslots.any?
+          @service_ids << service.id
+        end
+      end
+      @service_ids.compact.uniq
+      
+
+      @services = Service.where(id: @service_ids).order(created_at: :asc)
+    end
   end
 
   def index
@@ -37,7 +52,7 @@ class ServicesController < ApplicationController
   private
 
   def service_params
-    params.require(:service).permit(:name, :description, :price)
+    params.require(:service).permit(:name, :description, :price, :service_image)
   end
 
   def get_category

@@ -1,3 +1,8 @@
-<h1>Services for <%= @category.name %></h1>
-<%= link_to "Create Service", new_category_service_path(@category), data: { turbo_frame: 'modal' } %>
-<%= render @services %>
+<div class="p-3 pb-md-4 mx-auto text-center">
+    <h1 class="display-4 fw-normal t-shadow-sml-light">Services for <%= @category.name %></h1>
+    <%= link_to "Create Service", new_category_service_path(@category), data: { turbo_frame: 'modal' }, class:"btn btn-primary my-2" %> 
+</div>
+
+<div class="row row-cols-1">
+    <%= render @services %>
+</div>

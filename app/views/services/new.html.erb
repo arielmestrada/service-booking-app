@@ -1,7 +1,3 @@
-<%= turbo_frame_tag "modal" do %>    
-    <div data-controller="turbo-modal">
-        <h1>New Service for <%= @category.name %></h1>
-        <%= render "form", service: @service %>
-        <button data-action="turbo-modal#hideModal">Cancel</button>
-    </div>
+<%= render "shared/modal", title: "New Service" do %>
+    <%= render "form", service: @service %>
 <% end %>

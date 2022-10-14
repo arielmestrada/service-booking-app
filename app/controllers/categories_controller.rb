@@ -3,7 +3,7 @@ class CategoriesController < ApplicationController
     before_action :ensure_frame_response, only: [:new, :edit]
 
     def index
-        @categories = Category.all
+        @categories = Category.all.order(created_at: :asc)
     end
 
     def new
@@ -32,7 +32,7 @@ class CategoriesController < ApplicationController
     private
 
     def category_params
-        params.require(:category).permit(:name, :description)
+        params.require(:category).permit(:name, :description, :category_image)
     end
 
     def ensure_frame_response

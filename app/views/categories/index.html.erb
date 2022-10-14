@@ -1,3 +1,8 @@
-<h1>Categories</h1>
-<%= link_to "Create Category", new_category_path, data: { turbo_frame: 'modal' } %>
-<%= render @categories %>
+<div class="p-3 pb-md-4 mx-auto text-center">
+    <h1 class="display-4 fw-normal t-shadow-sml-light">Categories</h1>
+    <%= link_to "Create Category", new_category_path, data: { turbo_frame: 'modal' }, class:"btn btn-primary my-2" %>    
+</div>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    <%= render @categories %>
+</div>

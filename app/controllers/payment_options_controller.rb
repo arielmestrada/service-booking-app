@@ -3,16 +3,21 @@ class PaymentOptionsController < ApplicationController
     before_action :get_user, :get_payment_options
     before_action :ensure_frame_response, only: [:new]
 
+    def index
+    end
+
     def new
         @payment_option = @payment_options.new
     end
 
     def create
         @payment_option = @payment_options.create(payment_option_params)
+        redirect_to user_payment_options_path
     end
 
     def destroy
-        @payment_option = @payment_options.find(params[:id])
+        @payment_option = @payment_options.find(params[:id]).destroy
+        redirect_to user_payment_options_path
     end
 
     private
