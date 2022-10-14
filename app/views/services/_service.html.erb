@@ -6,17 +6,19 @@
             <% if current_page?(services_path) %>
                 <h6 class="card-subtitle mb-2 text-muted">Category: <%= service.category.name %></h6>
             <% end %>
+            <h6 class="card-subtitle mb-2 text-muted">Price: <%= service.price %>php</h6>
             <p class="card-text"><%= service.description %></p>
-            <p class="card-text">Price: <%= service.price %>php</p>
-            <% if service.addons.any? %>
-                <div class="shadow-sm p-3 mb-5 bg-white rounded">
-                    <h6>Addons</h6>                    
-                                        
-                    <div class="row row-cols-1 row-cols-md-3 g-4">
-                        <%= render service.addons %>
+            <% if can? :manage, Addon %>
+                <% if service.addons.any? %>
+                    <div class="shadow-sm p-3 mb-5 bg-white rounded">
+                        <h6>Addons</h6>                    
+                                            
+                        <div class="row row-cols-1 row-cols-md-3 g-4">
+                            <%= render service.addons %>
+                        </div>
                     </div>
-                </div>
-            <% end %>
+                <% end %>
+            <% end %>  
             <% if can? :manage, Schedule %>
                 <% if service.schedules.any? %>
                     <div class="shadow-sm p-3 mb-5 bg-white rounded">
@@ -37,13 +39,15 @@
                 <%= button_to "Delete Service", category_service_path(service.category, service), method: :delete, form: { data: { turbo_confirm: "Delete #{service.name}?" } }, class:"btn btn-outline-danger w-100" %>
             </div>            
         <% else %>
-            <%= form_with url: "/categories/#{service.category.id}/services/#{service.id}/bookings/new", method: :get, data: { turbo_frame: 'modal' } do |form| %>
-                <div class="field">
-                    <%= form.label :schedule_id %><br />
-                    <%= form.collection_select :schedule_id, service.schedules, :id, :available_date %>
-                </div>
-                <%= form.submit "Add to Cart" %>
-            <% end %>
+            <div class="container mb-3">
+                <%= form_with url: "/categories/#{service.category.id}/services/#{service.id}/bookings/new", method: :get, data: { turbo_frame: 'modal' } do |form| %>
+                    <div class="mb-3">
+                        <%= form.label "Available Schedule", class:"form-label" %>
+                        <%= form.collection_select :schedule_id, service.schedules, :id, :available_date, class:"form-control" %>
+                    </div>
+                    <%= form.submit "Add to Cart", class:"btn btn-primary" %>
+                <% end %>
+            </div>
         <% end %>   
     </div> 
 </div>
