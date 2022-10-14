@@ -60,6 +60,8 @@ class BookingsController < ApplicationController
             number: @order_number
         )
 
+        # for mailer only        
+
         # Create booking
         Booking.create(
             booking_number: @order_number,       
@@ -83,6 +85,8 @@ class BookingsController < ApplicationController
             addon_prices: @addon_prices,
             amount: @total
         )
+
+        BookingMailer.with(user: current_user, booking_number: @order_number).booking_created.deliver_later
 
         redirect_to "/bookings"
     end
