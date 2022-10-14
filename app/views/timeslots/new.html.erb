@@ -1,7 +1,3 @@
-<%= turbo_frame_tag "modal" do %>    
-    <div data-controller="turbo-modal">
-        <h1>New Timeslot</h1>
-        <%= render "form", timeslot: @timeslot %>
-        <button data-action="turbo-modal#hideModal">Cancel</button>
-    </div>
+<%= render "shared/modal", title: "New Timeslot" do %>
+    <%= render "form", timeslot: @timeslot %>
 <% end %>

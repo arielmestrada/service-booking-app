@@ -3,6 +3,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
 
+  scope :customers, -> { where(is_admin: false) }
+
   validates_uniqueness_of :contact_number
   validates_presence_of :first_name, :last_name, :contact_number, :street, :village, :city, :province, :postal_code
   

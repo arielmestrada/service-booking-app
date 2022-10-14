@@ -1,7 +1,3 @@
-<%= turbo_frame_tag "modal" do %>    
-    <div data-controller="turbo-modal">
-        <h1>New Payment Option></h1>
-        <%= render "form", payment_option: @payment_option %>
-        <button data-action="turbo-modal#hideModal">Cancel</button>
-    </div>
+<%= render "shared/modal", title: "New Payment Option" do %>
+    <%= render "form", payment_option: @payment_option %>
 <% end %>

@@ -1,8 +1,14 @@
-<div>
-    <h2><%= category.name %></h2>
-    <p><%= category.description %></p>
-
-    <%= link_to "Services", category_services_path(category) %>
-    <%= link_to "Edit Category", edit_category_path(category), data: { turbo_frame: 'modal' } %>
-    <%= button_to "Delete Category", category, method: :delete, form: { data: { turbo_confirm: "Delete #{category.name}?" } } %>
+<div class="col">
+    <div class="card h-100">
+        <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/041.webp" class="card-img-top" alt="Hollywood Sign on The Hill" />
+        <div class="card-body d-flex flex-column justify-content-between">
+            <h5 class="card-title"><%= category.name %></h5>
+            <p class="card-text"><%= category.description %></p>
+            <div class="d-grid gap-2">
+                    <%= link_to "Services", category_services_path(category), class:"btn btn-outline-primary" %>
+                    <%= link_to "Edit Category", edit_category_path(category), data: { turbo_frame: 'modal' }, class:"btn btn-outline-primary" %>
+                    <%= button_to "Delete Category", category, method: :delete, form: { data: { turbo_confirm: "Delete #{category.name}?" } }, class:"btn btn-outline-danger w-100" %>
+            </div>
+        </div>
+    </div>
 </div>

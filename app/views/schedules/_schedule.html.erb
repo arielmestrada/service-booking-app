@@ -1,10 +1,18 @@
-<h3>
-    <%= date_formatter(schedule) %>
-
-    <%= link_to "Edit Schedule", edit_category_service_schedule_path(schedule.service.category, schedule.service, schedule), data: { turbo_frame: 'modal' } %>
-    <%= button_to "Delete Schedule", category_service_schedule_path(schedule.service.category, schedule.service, schedule),
-    method: :delete, form: { data: { turbo_confirm: "Delete schedule on #{date_formatter(schedule)}?" } } %>
-
-    <%= link_to "Add Timeslot", new_category_service_schedule_timeslot_path(schedule.service.category, schedule.service, schedule), data: { turbo_frame: 'modal' } %>
-    <%= render schedule.timeslots %>
-</h3>
+<div class="col">
+    <div class="card h-100">
+        <div class="card-body d-flex flex-column justify-content-between">
+            <div class="card-header d-flex justify-content-between">
+                <%= date_formatter(schedule) %>
+                <div class="d-flex">
+                    <%= link_to icon('fa-solid', 'plus'), new_category_service_schedule_timeslot_path(schedule.service.category, schedule.service, schedule), data: { turbo_frame: 'modal' }, class:"btn btn-outline-success btn-sm" %>
+                    <%= link_to icon('fa-solid', 'pen-to-square'), edit_category_service_schedule_path(schedule.service.category, schedule.service, schedule), data: { turbo_frame: 'modal' }, class:"btn btn-outline-primary btn-sm" %>
+                    <%= button_to icon('fa-solid', 'xmark'), category_service_schedule_path(schedule.service.category, schedule.service, schedule),
+                    method: :delete, form: { data: { turbo_confirm: "Delete schedule on #{date_formatter(schedule)}?" } }, class:"btn btn-outline-danger btn-sm w-100" %>
+                </div>  
+            </div>
+            <ul class="list-group list-group-flush">
+                <%= render schedule.timeslots %>
+            </ul>
+        </div>
+    </div>
+</div>

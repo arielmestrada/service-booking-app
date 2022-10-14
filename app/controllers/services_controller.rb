@@ -6,7 +6,7 @@ class ServicesController < ApplicationController
 
   def all
     if can? :manage, Service
-      @services = Service.all
+      @services = Service.all.order(created_at: :asc)
     else
 
       # Refactor this after completion
@@ -19,7 +19,7 @@ class ServicesController < ApplicationController
       @service_ids.compact.uniq
       
 
-      @services = Service.where(id: @service_ids)
+      @services = Service.where(id: @service_ids).order(created_at: :asc)
     end
   end
 

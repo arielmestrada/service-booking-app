@@ -3,7 +3,7 @@ class CategoriesController < ApplicationController
     before_action :ensure_frame_response, only: [:new, :edit]
 
     def index
-        @categories = Category.all
+        @categories = Category.all.order(created_at: :asc)
     end
 
     def new

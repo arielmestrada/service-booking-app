@@ -1,6 +1,9 @@
 <h1>Admin Overview</h1>
 <div class="container">
-    <div class="row overview-rows">
+    <% if @users.empty? %>
+        <h2>There are no registered users!</h2>
+    <% end %>
+    <div class="row overview-rows shadow p-3 mb-5 bg-body rounded">
         <table class="table">
             <thead>
                 <tr>
@@ -21,8 +24,13 @@
         </table>
     </div>
 
-    <div class="row overview-rows">
-        <h3><%= "Your most booked service is #{@most_booked_service}" %></h3>
+    <div class="row overview-rows shadow p-3 mb-5 bg-body rounded">
+        <% if @bookings.empty? %>
+            <h2>There are no bookings!</h2>
+        <% else %>
+            <h3><%= "Your most booked service is #{@most_booked_service}" %></h3>
+        <% end %>
+        
         <table class="table">
             <thead>
                 <tr>

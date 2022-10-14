@@ -1,27 +1,27 @@
 <%= form_with(model: [@user, payment_option]) do |f| %>
     
-    <div>
-        <%= f.label :card_type %><br>
-        <%= f.select :card_type, [ 'VISA','MasterCard','PayPal' ], :prompt => 'Select One' %>
+    <div class="mb-3">
+        <%= f.label :card_type, class:"form-label" %>
+        <%= f.select :card_type, [ 'VISA','MasterCard','PayPal' ], :prompt => 'Select One', class:"form-select" %>
     </div>
 
-    <div>
-        <%= f.label :card_number %>
-        <%= f.number_field :card_number %>
+    <div class="mb-3">
+        <%= f.label :card_number, class:"form-label" %>
+        <%= f.number_field :card_number, class:"form-control" %>
     </div>
 
-    <div>
-        <%= f.label :expiry_date %>
-        <%= f.date_field  :expiry_date %>
+    <div class="mb-3">
+        <%= f.label :expiry_date, class:"form-label" %>
+        <%= f.date_field  :expiry_date, class:"form-control" %>
     </div>
 
-    <div>
-        <%= f.label :registered_name %>
-        <%= f.text_field  :registered_name %>
+    <div class="mb-3">
+        <%= f.label :registered_name, class:"form-label" %>
+        <%= f.text_field  :registered_name, class:"form-control" %>
     </div>
 
-    <div>
-        <%= f.submit %>
+    <div class="mb-3">
+        <%= f.submit class:"btn btn-primary" %>
     </div>
     
 <% end %>

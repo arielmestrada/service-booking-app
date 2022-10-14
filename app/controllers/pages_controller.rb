@@ -14,7 +14,7 @@ class PagesController < ApplicationController
       end
     end
     @most_booked_service = @count.max_by { |k, v| v }[0]
-    @users = User.all
+    @users = User.customers
     @bookings = Booking.all
   end
 
