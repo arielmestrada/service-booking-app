@@ -1,4 +1,5 @@
 class Service < ApplicationRecord
+    has_one_attached :service_image
     belongs_to :category
     has_many :addons, dependent: :destroy
     has_many :schedules, dependent: :destroy
