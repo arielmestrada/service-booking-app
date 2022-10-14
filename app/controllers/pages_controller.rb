@@ -5,6 +5,7 @@ class PagesController < ApplicationController
   end
 
   def overview
+    authorize! :manage, :all
     @count = Hash.new
     Booking.all.each do |booking|
       if @count.include?(booking.service_name)
@@ -13,7 +14,13 @@ class PagesController < ApplicationController
         @count[booking.service_name] = 1
       end
     end
-    @most_booked_service = @count.max_by { |k, v| v }[0]
+
+    if @count.empty?
+      @most_booked_service = "None"
+    else
+      @most_booked_service = @count.max_by { |k, v| v }.first
+    end
+    
     @users = User.customers
     @bookings = Booking.all
   end
