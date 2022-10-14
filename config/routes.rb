@@ -28,6 +28,12 @@ Rails.application.routes.draw do
   # booking create
   post "/booking/confirmation", to: "bookings#create"
 
+  # booking cancel
+  patch "/booking/:booking_id/cancel", to: "bookings#cancel", as: "booking_cancel"
+
+  # booking complete
+  patch "/booking/:booking_id/complete", to: "bookings#complete", as: "booking_complete"
+
   # all services
   get "/services", to: "services#all", as: "services"
   

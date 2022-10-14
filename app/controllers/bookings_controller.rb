@@ -18,7 +18,16 @@ class BookingsController < ApplicationController
         @booking = Booking.new
     end
 
-    def confirmation
+    def cancel
+        @booking = Booking.find(params[:booking_id])
+        @booking.update(status: "cancelled")
+        redirect_to overview_path
+    end
+    
+    def complete
+        @booking = Booking.find(params[:booking_id])
+        @booking.update(status: "completed")
+        redirect_to overview_path
     end
 
     def create
