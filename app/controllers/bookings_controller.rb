@@ -75,7 +75,7 @@ class BookingsController < ApplicationController
             amount: @total
         )
 
-        redirect_to "/services"
+        redirect_to "/bookings"
     end
     
 end

@@ -17,14 +17,16 @@
                     </div>
                 </div>
             <% end %>
-            <% if service.schedules.any? %>
-                <div class="shadow-sm p-3 mb-5 bg-white rounded">
-                    <h6>Schedules</h6>
-                    <div class="row row-cols-1 row-cols-md-3 g-4">
-                        <%= render service.schedules %>
+            <% if can? :manage, Schedule %>
+                <% if service.schedules.any? %>
+                    <div class="shadow-sm p-3 mb-5 bg-white rounded">
+                        <h6>Schedules</h6>
+                        <div class="row row-cols-1 row-cols-md-3 g-4">
+                            <%= render service.schedules %>
+                        </div>
                     </div>
-                </div>
-            <% end %>           
+                <% end %>  
+            <% end %>                     
         </div>
 
         <% if can? :manage, Service %>

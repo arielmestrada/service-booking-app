@@ -15,24 +15,52 @@
     </tr>
 <% else %>
     <div>
-        <%= booking.booking_number %><br/>
-        <%= booking.date_booked %><br/>
-        <%= booking.email %><br/>
-        <%= booking.first_name %><br/>
-        <%= booking.last_name %><br/>
-        <%= booking.contact_number %><br/>
-        <%= booking.street %><br/>
-        <%= booking.village %><br/>
-        <%= booking.city %><br/>
-        <%= booking.province %><br/>
-        <%= booking.postal_code %><br/>
-        <%= booking.service_name %><br/>
-        <%= booking.service_price %><br/>
         <%= booking.scheduled_date %><br/>
         <%= booking.scheduled_time %><br/>
         <%= booking.amount %><br/>
         <%= booking.payment %><br/>
         <%= booking.status %>
+    </div>
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">Order Number: <%= booking.booking_number %></h5>
+            <h6 class="card-subtitle mb-2 text-muted">Order Date</h6>
+            <p class="card-text"><%= booking.date_booked.strftime("%A, %B %d %Y") %></p>
+            <h6 class="card-subtitle mb-2 text-muted">Name</h6>
+            <p class="card-text"><%= "#{booking.first_name} #{booking.last_name}" %></p>
+            <h6 class="card-subtitle mb-2 text-muted">Email</h6>
+            <p class="card-text"><%= booking.email %></p>
+            <h6 class="card-subtitle mb-2 text-muted">Contact</h6>
+            <p class="card-text"><%= booking.contact_number %></p>
+            <h6 class="card-subtitle mb-2 text-muted">Address</h6>
+            <p class="card-text"><%= "#{booking.street}, #{booking.village}, #{booking.city}, #{booking.province}, #{booking.postal_code}" %></p>
+            <h6 class="card-subtitle mb-2 text-muted">Service Availed</h6>
+            <p class="card-text"><%= booking.service_name %></p>
+            <h6 class="card-subtitle mb-2 text-muted">Service Price</h6>
+            <p class="card-text"><%= booking.service_price %></p>
+            <% if booking.addon_names.any? %>
+                <h6 class="card-subtitle mb-2 text-muted">Addons</h6>
+                <% for i in 0..(booking.addon_names.count - 1) do %>
+                    <p class="card-text my-0 py-0"><%= "#{booking.addon_names[i]} +#{booking.addon_prices[i]}php" %></p>
+                <% end %>
+            <% end %>
+            <h6 class="card-subtitle mb-2 text-muted">Scheduled Date</h6>
+            <p class="card-text"><%= booking.scheduled_date.strftime("%A, %B %d %Y") %></p>
+            <h6 class="card-subtitle mb-2 text-muted">Scheduled Time</h6>
+            <p class="card-text"><%= booking.scheduled_time.strftime("%I:%M%p") %></p>
+            <h6 class="card-subtitle mb-2 text-muted">Total Amount</h6>
+            <p class="card-text"><%= booking.amount %></p>
+            <h6 class="card-subtitle mb-2 text-muted">Payment</h6>
+            <p class="card-text"><%= booking.payment %></p>
+            <h6 class="card-subtitle mb-2 text-muted">Status</h6>
+            <p class="card-text"><%= booking.status.capitalize %></p>
+            <% if can? :manage, Booking %>
+                <% if booking.status == "pending" %>    
+                    <a href="#" class="card-link">Cancel</a>
+                    <a href="#" class="card-link">Completed</a>
+                <% end %> 
+            <% end %>            
+        </div>
     </div>
 <% end %>
 

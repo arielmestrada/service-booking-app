@@ -1,6 +1,15 @@
-<div>
-    <%= payment_option.card_number %><br/>
-    <%= payment_option.card_type %><br/>
-    <%= payment_option.expiry_date %><br/>
-    <%= payment_option.registered_name %>
+<div class="col">
+    <div class="card h-100">
+        <div class="card-body d-flex flex-column justify-content-between">
+            <h6 class="card-subtitle mb-2 text-muted">Card Number</h6>
+            <p class="card-text"><%= payment_option.card_number %></p>
+            <h6 class="card-subtitle mb-2 text-muted">Card Type</h6>
+            <p class="card-text"><%= payment_option.card_type %></p>
+            <h6 class="card-subtitle mb-2 text-muted">Registered Name</h6>
+            <p class="card-text"><%= payment_option.registered_name %></p>
+            <h6 class="card-subtitle mb-2 text-muted">Expiry Date</h6>
+            <p class="card-text"><%= payment_option.expiry_date %></p>
+            <%= button_to "Delete Payment Option", user_payment_option_path(current_user, payment_option), method: :delete, form: { data: { turbo_confirm: "Delete?" } }, class:"btn btn-outline-danger w-100" %>
+        </div>
+    </div>
 </div>

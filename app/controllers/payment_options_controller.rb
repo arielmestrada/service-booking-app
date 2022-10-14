@@ -16,7 +16,8 @@ class PaymentOptionsController < ApplicationController
     end
 
     def destroy
-        @payment_option = @payment_options.find(params[:id])
+        @payment_option = @payment_options.find(params[:id]).destroy
+        redirect_to user_payment_options_path
     end
 
     private
