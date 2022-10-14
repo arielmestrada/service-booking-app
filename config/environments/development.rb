@@ -1,6 +1,21 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
+
+  config.action_mailer.default_url_options = { host: 'pacific-tor-22541.herokuapp.com', protocol: 'https' }
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              'smtp.gmail.com',
+    port:                 587,
+    domain:               'pacific-tor-22541.herokuapp.com',
+    user_name:            'ariel.rails.test@gmail.com',
+    password:             '<password>',
+    authentication:       'plain',
+    enable_starttls_auto: true,
+    open_timeout:         5,
+    read_timeout:         5 }
+
   
   # Settings specified here will take precedence over those in config/application.rb.
   config.active_storage.variant_processor = :mini_magick
@@ -32,6 +47,7 @@ Rails.application.configure do
       "Cache-Control" => "public, max-age=#{2.days.to_i}"
     }
   else
+
     config.action_controller.perform_caching = false
 
     config.cache_store = :null_store
@@ -40,12 +56,12 @@ Rails.application.configure do
   
 
   # devise setup default url
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.default_url_options = { host: 'https://pacific-tor-22541.herokuapp.com' }
 
   
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   config.action_mailer.perform_caching = false
 
